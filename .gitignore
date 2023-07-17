@@ -1,0 +1,48 @@
+# .gitignore for Time-Proj
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Log files
+*.Log
+
+# Database file (if not managed by migrations)
+timelogged.db
+
+# Generated files and directories
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.egg-info/
+dist/
+*.egg-info/
+dist/
+build/
+
+# Ignore local configuration files
+instance/
+
+# Ignore any sensitive or private files (e.g., API keys, passwords)
+config.py
+secrets.py
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific files and directories
+.vscode/
+.idea/
+*.iml
+*.ipynb_checkpoints/
