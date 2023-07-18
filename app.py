@@ -1,5 +1,6 @@
 from datetime import datetime
 import sqlite3
+import sys
 
 def db_create():
     with sqlite3.connect("timelogged.db") as connection:
@@ -41,23 +42,23 @@ def time_out(firstname, lastname):
 if __name__ == '__main__':
     db_create()
 
-    while True:
-        choice = input("Enter '1' for Sign-In, '2' for Sign-Out, or 'q' to quit: ")
+    if len(sys.argv) == 2:
+        choice = sys.argv[1]
+    else:
+        print("Usage: python app.py <choice>")
+        sys.exit(1)
 
-        if choice == '1':
-            firstname = input("Enter your first name: ")
-            lastname = input("Enter your last name: ")
-            time_in(firstname, lastname)
-            print("Sign-In recorded.")
+    if choice == '1':
+        firstname = input("Enter your first name: ")
+        lastname = input("Enter your last name: ")
+        time_in(firstname, lastname)
+        print("Sign-In recorded.")
 
-        elif choice == '2':
-            firstname = input("Enter your first name: ")
-            lastname = input("Enter your last name: ")
-            time_out(firstname, lastname)
-            print("Sign-Out recorded.")
+    elif choice == '2':
+        firstname = input("Enter your first name: ")
+        lastname = input("Enter your last name: ")
+        time_out(firstname, lastname)
+        print("Sign-Out recorded.")
 
-        elif choice.lower() == 'q':
-            break
-
-        else:
-            print("Invalid choice. Please try again.")
+    else:
+        print("Invalid choice. Please try again.")

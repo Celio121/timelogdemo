@@ -21,15 +21,13 @@ pipeline {
             steps {
                 script {
                     // Run the program and provide input data (if needed)
-                    sh '. ${VENV_HOME}/bin/activate && python app.py'
-                    // Input data in the program (you can use 'echo' and 'python3' commands)
-                    sh 'echo "1"' // Example input '1' for Sign-In
-                    sh 'echo "testin"' // input firstname in signin
-                    sh 'echo "testinsur"'// input lastname in signin
-                    sh 'echo "2"' // Example input '2' for Sign-Out
-                    sh 'echo "testout"' // input firstname in signout
-                    sh 'echo "testoutsur"' // input lastname in signout
-                    sh 'echo"q"' // Stop the program (if needed)
+                    sh ". ${VENV_HOME}/bin/activate && python app.py 1" // Example input '1' for Sign-In
+                    sh ". ${VENV_HOME}/bin/activate && python app.py testin" // input firstname in signin
+                    sh ". ${VENV_HOME}/bin/activate && python app.py testinsur"// input lastname in signin
+                    sh ". ${VENV_HOME}/bin/activate && python app.py 2" // Example input '2' for Sign-Out
+                    sh ". ${VENV_HOME}/bin/activate && python app.py testout" // input firstname in signout
+                    sh ". ${VENV_HOME}/bin/activate && python app.py testoutsur" // input lastname in signout
+                    sh ". ${VENV_HOME}/bin/activate && python app.py q" // Stop the program (if needed)
 
 
 
