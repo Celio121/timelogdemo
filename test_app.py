@@ -13,8 +13,8 @@ def test_time_in():
 
     # Assert that the data that was added to the database correctly without any issues
     with sqlite3.connect("timelogged.db") as connection:
-        cursor = connection.commit()
-        cursor.execute("SELECT fitsname, lastname, signins FROM timelogs WHERE firstname=? AND lastname=?", (firstname, lastname))
+        cursor = connection.cursor()
+        cursor.execute("SELECT firstname, lastname, signing FROM timelogs WHERE firstname=? AND lastname=?", (firstname, lastname))
         result = cursor.fetchone()
 
     assert result is not None
@@ -22,7 +22,7 @@ def test_time_in():
     assert result[1] == lastname
     assert result[2] == 1 # Signing should be set to True (1) for signing-in
 
-    # testing time_out finction
+# testing time_out function
 def test_time_out():
     firstname = "testout"
     lastname = "testout"
