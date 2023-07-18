@@ -40,13 +40,12 @@ def time_out(firstname, lastname):
         connection.commit()
 
 if __name__ == '__main__':
-    db_name = "timelogged.db"
-    db_create(db_name)
+    db_create()
 
     if len(sys.argv) == 2:
         choice = sys.argv[1]
     else:
-        print("Usage: python app.py <choice>")
+        print("Usage: echo <choice>")
         sys.exit(1)
 
     if choice == '1':
