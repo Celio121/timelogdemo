@@ -45,8 +45,6 @@ pipeline {
     post {
         always {
             // Perform any post-clean up tasks, such as deleting temporary files, etc.
-            // Deactivate the virtual environment
-            sh 'deactivate' // This may not be necessary
             sh "rm -rf ${VENV_HOME}" // Clean up the virtual environment
             sh 'rm -f timelogged.db'
         }
