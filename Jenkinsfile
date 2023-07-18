@@ -17,12 +17,6 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
-            steps {
-                sh '. ${VENV_HOME}/bin/activate && pytest test_app.py' // Run pytest on the program
-            }
-        }
-
         stage('Run Program') {
             steps {
                 script {
@@ -37,10 +31,18 @@ pipeline {
                     sh 'echo "testoutsur" | python3 app.py' // input lastname in signout
                     sh 'echo "q" | python3 app.py' // Stop the program (if needed)
 
+
+
                 }
             }
         }
     }
+    
+        stage('Unit Tests') {
+            steps {
+                sh '. ${VENV_HOME}/bin/activate && pytest test_app.py' // Run pytest on the program
+            }
+        }
 
     post {
         always {
