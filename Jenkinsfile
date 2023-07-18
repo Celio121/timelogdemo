@@ -5,8 +5,8 @@ pipeline {
         stage('Setup'){
             steps {
                 // Install Python and required dependencies
-                sh 'python3 -m pip install --upgrade pip'
-                sh 'python3 -m pip install -r requirements.txt'
+                sh 'sudo pip install --upgrade pip'
+                sh 'sudo pip install -r requirements.txt'
 
                 // Create and activate a virtual environment (optional)
                 sh 'python3 -m venv venv'
