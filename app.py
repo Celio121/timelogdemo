@@ -15,10 +15,8 @@ def db_create():
         except Exception as e:
             print(f"Error creating table: {e}")
 
-db_name = "timelogged.db"
-
 def time_in(firstname, lastname):
-    with sqlite3.connect(db_name) as connection:
+    with sqlite3.connect("timelogged.db") as connection:
         cursor = connection.cursor()
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute("""INSERT INTO timelogs(
@@ -30,7 +28,7 @@ def time_in(firstname, lastname):
         connection.commit()
 
 def time_out(firstname, lastname):
-    with sqlite3.connect(db_name) as connection:
+    with sqlite3.connect("timelogged.db") as connection:
         cursor = connection.cursor()
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute("""INSERT INTO timelogs(
@@ -42,7 +40,8 @@ def time_out(firstname, lastname):
         connection.commit()
 
 if __name__ == '__main__':
-    db_create(db_name) #created the db
+    db_name = "timelogged.db"
+    db_create(db_name)
 
     if len(sys.argv) == 2:
         choice = sys.argv[1]
