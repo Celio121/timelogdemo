@@ -3,14 +3,11 @@ pipeline {
 
     stages {
         stage('Setup'){
-            steps {
-                // Install Python and required dependencies
-                sh 'sudo pip install --upgrade pip'
-                sh 'sudo pip install -r requirements.txt'
-
-                // Create and activate a virtual environment (optional)
-                sh 'python3 -m venv venv'
-                sh '. venv/bin/activate'
+            steps { 
+                // Creating virtual enviroment on Jenkins server
+                sh 'python3 -m venv .venv'
+                sh '. .venv/bin/activate'
+                sh 'pip install Flask'
                 sh 'pip install -r requirements.txt'
             }
         }
