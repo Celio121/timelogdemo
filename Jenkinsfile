@@ -7,6 +7,7 @@ pipeline {
                 // Creating virtual enviroment on Jenkins server
                 sh 'python3 -m venv .venv'
                 sh '. .venv/bin/activate'
+                sh 'apt install pip'
                 sh 'pip install Flask'
                 sh 'pip install -r requirements.txt'
             }
