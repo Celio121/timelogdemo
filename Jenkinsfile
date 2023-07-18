@@ -2,50 +2,49 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Setup'){
             steps {
-                // Checking out from repo
-                git 'https://github.com/Celio121/timelogdemo.git'
-            }
-        }
+                // Install Python and required dependencies
+                sh 'python -m pip install --upgrade pip'
+                sh 'python -m pip install -r requirements.txt'
 
-        stage('Setup') {
-            steps {
-                // Creating virtual environment and installing requirements
+                // Create and activate a virtual environment (optional)
                 sh 'python -m venv venv'
-                sh '. venv/bin/activate && pip install -r requirements.txt'
+                sh '. venv/bin/activate'
+                sh 'pip install -r requirements.txt'
             }
         }
-
         stage('Unit Tests') {
             steps {
-                // Pytesting application
-                sh '. venv/bin/activate && pytest'
+                sh 'pytest test_app.py' // Run pytest on the program
             }
         }
 
         stage('Run Program') {
             steps {
-                sh '. venv/bin/activate && python app.py'
-                sh 'echo "Virtual environment is running and program is working"'
-                // Add additional input data if needed
-            }
-        }
+                script {
+                    // Run the program
+                    sh 'python app.py'
 
-        stage('Post-Cleanup') {
-            steps {
-                // Perform any post-cleanup tasks, such as deleting temporary files, etc.
-                sh 'rm -f timelogged.db'
-                sh 'deactivate'
+                    // Input data in the program (you can use 'echo' and 'python' commands)
+                    sh 'echo "1" | python app.py' // Example input '1' for Sign-In
+                    sh 'echo "testin" | python app.py' // input firstname in signin
+                    sh 'echo "testinsur" | python app.py'// input lastname in signin
+                    sh 'echo "2" | python app.py' // Example input '2' for Sign-Out
+                    sh 'echo "testout" | python app.py' // input firstname in signout
+                    sh 'echo "testoutsur" | python app.py' // input lastname in signout
+                    sh 'echo "q" | python app.py' // Stop the program (if needed)
+
+                }
             }
         }
     }
 
     post {
         always {
-            // Perform cleanup in case of job failure as well
+            // Perform any post-clean up tasks, such as deleting temporary files, etc.
             sh 'rm -f timelogged.db'
-            sh 'deactivate'
+            sh 'deactivate' // exiting venv.
         }
     }
 }
