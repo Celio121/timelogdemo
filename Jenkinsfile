@@ -19,7 +19,7 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                sh 'source ${VENV_HOME}/bin/activate && pytest test_app.py' // Run pytest on the program
+                sh '. ${VENV_HOME}/bin/activate && pytest test_app.py' // Run pytest on the program
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Run the program and provide input data (if needed)
-                    sh 'source ${VENV_HOME}/bin/activate && python app.py'
+                    sh '. ${VENV_HOME}/bin/activate && python app.py'
                     // Input data in the program (you can use 'echo' and 'python3' commands)
                     sh 'echo "1" | python3 app.py' // Example input '1' for Sign-In
                     sh 'echo "testin" | python3 app.py' // input firstname in signin
@@ -45,9 +45,8 @@ pipeline {
     post {
         always {
             // Perform any post-clean up tasks, such as deleting temporary files, etc.
-
             // Deactivate the virtual environment
-            sh 'deactivate' // This may not be necessary with the modified approach
+            sh 'deactivate' // This may not be necessary
             sh "rm -rf ${VENV_HOME}" // Clean up the virtual environment
             sh 'rm -f timelogged.db'
         }
