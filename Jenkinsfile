@@ -36,13 +36,13 @@ pipeline {
                 }
             }
         }
-    }
-    
+
         stage('Unit Tests') {
             steps {
                 sh '. ${VENV_HOME}/bin/activate && pytest test_app.py' // Run pytest on the program
             }
         }
+    }
 
     post {
         always {
