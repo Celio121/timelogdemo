@@ -12,8 +12,8 @@ pipeline {
             steps {
                 // Create and activate a virtual environment
                 sh 'python3 -m venv ${VENV_HOME}'
-                sh 'source ${VENV_HOME}/bin/activate && pip install --upgrade pip && pip install Flask'
-                sh 'source ${VENV_HOME}/bin/activate && pip install -r requirements.txt'
+                sh '. ${VENV_HOME}/bin/activate && pip install --upgrade pip && pip install Flask'
+                sh '. ${VENV_HOME}/bin/activate && pip install -r requirements.txt'
             }
         }
 
