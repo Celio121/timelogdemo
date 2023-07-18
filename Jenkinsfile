@@ -14,6 +14,7 @@ pipeline {
                 sh 'python3 -m venv ${VENV_HOME}'
                 sh '. ${VENV_HOME}/bin/activate && pip install --upgrade pip && pip install Flask'
                 sh '. ${VENV_HOME}/bin/activate && pip install -r requirements.txt'
+                sh ". ${VENV_HOME}/bin/activate && python create_db.py timelogged.db"
             }
         }
 
