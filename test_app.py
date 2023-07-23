@@ -1,6 +1,6 @@
 import pytest
 import sqlite3
-from app import db_create, time_in, time_out
+from app import db_create
 
 # test database creation code
 def test_db_create():

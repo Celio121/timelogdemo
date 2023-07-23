@@ -1,5 +1,14 @@
 import pytest
-from app import app
+import sqlite3
+from app import app, db_create
+
+connection = sqlite3.connect('timelogged.db')
+db_create(connection)
+
+# Checking to see if the table is created
+cursor = connection.cursor()
+cursor.execute("INSERT INTO timelogs(firstname, lastname, signing, time) VALUES ('testin', 'testin', 1, '2023-07-23 14:30:00')") # inputting signin data
+connection.commit()
 
 # testing the routes in the flask app
 @pytest.fixture
