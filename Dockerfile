@@ -1,20 +1,17 @@
 # Use the official Python image as the base image
-FROM python:3
+FROM python:3.9
 
-# Setting the working directory inside the container
-WORKDIR /app/gittime
+# Set the working directory inside the container
+WORKDIR /app
 
-# Copy the requirements.txt file into the container
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Install the required packages
-RUN pip install --no-cache-dir -r requirements.txt
+# Install the required dependencies
+RUN pip install flask
 
-# Copy the rest of the app files into the container
-COPY . .
-
-# Expose the port of the flask application
+# Expose port 5000
 EXPOSE 5000
 
-# Start the falsk application
-CMD ["python", "app.py"]
+# Run the application
+CMD ["python3", "app.py"]
