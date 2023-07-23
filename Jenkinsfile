@@ -42,7 +42,6 @@ pipeline {
         stage('Cleanup') {
             steps {
                 // Deactivate the virtual environment and clean up
-                sh 'deactivate'
                 sh 'rm -rf venv'
                 sh 'rm timelogged.db'
             }
