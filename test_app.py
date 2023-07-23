@@ -2,9 +2,6 @@ import pytest
 import sqlite3
 from app import db_create, time_in, time_out
 
-connection = sqlite3.connect("timelogged.db")
-cursor = connection.cursor()
-
 # test database creation code
 def test_db_create():
     connection = sqlite3.connect(":memory:")
