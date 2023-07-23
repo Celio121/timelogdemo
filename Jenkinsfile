@@ -25,20 +25,6 @@ pipeline {
             }
         }
 
-        stage('Wait for Application to Start') {
-            steps {
-                // Wait for the application to start
-                sh 'sleep 20'
-            }
-        }
-
-        stage('Stop Application') {
-            steps {
-                // Send a request to gracefully shutdown the Flask application
-                sh 'curl -X POST http://localhost:5000/shutdown'
-            }
-        }
-
         stage('Cleanup') {
             steps {
                 // Deactivate the virtual environment and clean up
