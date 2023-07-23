@@ -7,7 +7,7 @@ pipeline {
                 // Set up virtual environment
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
-                sh 'pip install -r requirements.txt' // Make sure you have a requirements.txt file with the necessary dependencies.
+                sh '. venv/bin/activate && pip install -r requirements.txt' // Make sure you have a requirements.txt file with the necessary dependencies.
             }
         }
 
