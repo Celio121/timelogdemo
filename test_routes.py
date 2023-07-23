@@ -55,4 +55,3 @@ def test_signout_post(client):
     response = client.post('/signout', data=data, follow_redirects=True)
     assert response.status_code == 200  # Check if the redirect was successful
     assert b"Welcome to the Home Page" in response.data
-
