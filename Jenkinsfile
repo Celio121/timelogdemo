@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run pytest for test_app.py and test_routes.py using the installed pytest
-                sh 'source venv/bin/activate && pytest test_app.py test_routes.py'
+                sh '. venv/bin/activate && pytest test_app.py test_routes.py'
             }
         }
 
